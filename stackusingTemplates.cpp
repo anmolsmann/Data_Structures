@@ -1,14 +1,15 @@
 #include <iostream>
 using namespace std;
+template<typename T>
 
 class StackUsingArray{
-    int *data;
+    T *data;
     int nextIndex;
     int capacity;                                   //for the total size of the array/stack;
     public:
 
     StackUsingArray(){                              // for non dynamic arrays, give argument in constructor
-        data = new int[5];
+        data = new T[5];
         nextIndex = 0;
         capacity = 5;
     }
@@ -26,9 +27,9 @@ class StackUsingArray{
         }
     }
 
-    void push(int element){                                 
+    void push(T element){                                 
         if(nextIndex == capacity){
-            int *newData = new int[2*capacity];     // dynamic array
+            T *newData = new T[2*capacity];     // dynamic array
             for (int i = 0; i < capacity; i++)
             {
                 newData[i] = data[i];
@@ -42,30 +43,31 @@ class StackUsingArray{
         nextIndex++;
     }
 
-    int pop(){
+    T pop(){
         if(isEmpty()){
             cout<<"Stack is empty"<<endl;
-            return INT_MIN;
+            return 0;
         }
         nextIndex--;
         return data[nextIndex];
     }
 
-    int top(){
+    T top(){
         if(isEmpty()){
             cout<<"Stack is empty"<<endl;
+            return 0;
         }
         return data[nextIndex-1];
     }
 };
 
 int main(){
-    StackUsingArray s;
-    s.push(10);
-    s.push(20);
-    s.push(30);
-    s.push(40);
-    s.push(50);
+    StackUsingArray<int> s;
+    s.push(100);
+    s.push(101);
+    s.push(102);
+    s.push(103);
+    s.push(104);
 
     cout<<s.top()<<endl;
     cout<<s.size()<<endl;
